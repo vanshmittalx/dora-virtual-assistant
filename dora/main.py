@@ -9,11 +9,10 @@ from gtts import gTTS
 import pygame
 import os
 
-# pip install pocketsphinx
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init() 
-newsapi = "<Your Key Here>"
+newsapi = "<Your Key Here>" #you have to generate user news api key to use news commands
 
 def speak_old(text):
     engine.say(text)
@@ -41,7 +40,7 @@ def speak(text):
 
 def aiProcess(command):
     client = OpenAI(api_key="<Your Key Here>",
-    )
+    ) #you have to generate your user openai api key to use the commmands
 
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
