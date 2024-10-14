@@ -65,7 +65,6 @@ def processCommand(c):
         song = c.lower().split(" ")[1]
         link = musicLibrary.music[song]
         webbrowser.open(link)
-
     elif "news" in c.lower():
         r = requests.get(f"https://newsapi.org/v2/top-headlines?country=in&apiKey={newsapi}")
         if r.status_code == 200:
@@ -78,7 +77,9 @@ def processCommand(c):
             # Print the headlines
             for article in articles:
                 speak(article['title'])
-
+    elif "how are you" or "how r u" in c.lower():
+        print("I am good, How are you?")
+        speak("i am good, how are you?")
     else:
         # Let OpenAI handle the request
         output = aiProcess(c)
@@ -91,7 +92,7 @@ def processCommand(c):
 if __name__ == "__main__":
     speak("Initializing Dora....")
     while True:
-        # Listen for the wake word "Homelander"
+        # Listen for the wake word "Dora"
         # obtain audio from the microphone
         r = sr.Recognizer()
          
@@ -111,6 +112,10 @@ if __name__ == "__main__":
 
                     processCommand(command)
 
+            elif(word.lower() == "stop" or "exit"):
+                speak("Goodbye...")
+                print("Stopping Dora...")
+                break
 
         except Exception as e:
             print("Error; {0}".format(e))
